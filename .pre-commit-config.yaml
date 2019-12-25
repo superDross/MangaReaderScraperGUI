@@ -1,0 +1,37 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: master
+    hooks:
+    -   id: trailing-whitespace
+    -   id: end-of-file-fixer
+    -   id: check-added-large-files
+    -   id: check-yaml
+    -   id: detect-private-key
+    -   id: requirements-txt-fixer
+
+-   repo: https://github.com/timothycrosley/isort
+    rev: 4.3.21-2
+    hooks:
+    -   id: isort
+        # third-party libs are not being recognised as third party
+        args: [--diff, -ws, -tc, -o=tabulate, -o=bs4, -o=requests, -o=pytest, -w, "88"]
+
+-   repo: https://gitlab.com/pycqa/flake8
+    rev: 3.7.9
+    hooks:
+    -   id: flake8
+        language_version: python3.7
+
+-   repo: https://github.com/psf/black
+    rev: 19.10b0
+    hooks:
+    -   id: black
+        language_version: python3.7
+
+-   repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v0.750
+    hooks:
+    -   id: mypy
+        args: [--no-strict-optional, --ignore-missing-imports]
